@@ -1,0 +1,23 @@
+# various IDE temp directories etc.
+target/
+classes/
+checkouts/
+out/
+bin/
+
+# Clojure metafiles
+.lein-env
+.lein-failures
+.lein-repl-history
+.nrepl-port
+.nrepl-history
+
+# JetBrains IDE metadata
+*.iml
+.idea/
+
+# Allow all and any scratch files to exist in project root
+scratch.*
+
+# macOS meta files
+.DS_Store

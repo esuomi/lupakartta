@@ -1,0 +1,3 @@
+# Figwheel specific ignores
+.rebel_readline_history
+figwheel_server.log

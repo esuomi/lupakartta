@@ -1,0 +1,25 @@
+version: '3'
+
+# Services
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: lupakartta/api:latest
+    container_name: lupakartta-api
+    ports:
+      - "8080:8080"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 100M
+      restart_policy:
+        condition: on-failure
+    networks:
+      - microservices
+
+networks:
+  microservices:
