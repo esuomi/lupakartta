@@ -1,9 +1,13 @@
 (ns ui.subs
-  (:require
-   [re-frame.core :as re-frame]))
+  (:require-macros [reagent.ratom :refer [reaction]])
+  (:require [re-frame.core :as re-frame :refer [register-sub]]))
 
 (re-frame/reg-sub
- ::name
- (fn [db]
-   (.log js/console (str "in ui: " db))
-   (:name db)))
+   :name
+  (fn [db]
+    (:name db)))
+
+(re-frame/reg-sub
+  :message
+  (fn [db]
+    (:message db)))

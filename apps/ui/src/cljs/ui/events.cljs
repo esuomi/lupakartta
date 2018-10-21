@@ -1,9 +1,21 @@
 (ns ui.events
-  (:require
-   [re-frame.core :as re-frame]
-   [ui.db :as db]))
+  (:require [re-frame.core :as re-frame :refer [register-handler]]
+            [ui.socket :refer [chsk-send!]]
+            [ui.db :as db]))
 
 (re-frame/reg-event-db
- :comms/connect
- (fn [_ _]
-   {:name "Doot doot"}))
+  :initialize-db
+  (fn  [_ _]
+    db/default-db))
+
+(re-frame/reg-event-db
+  :test/reply
+  (fn [db msg]
+    (assoc db :message msg)))
+
+(re-frame/reg-event-db
+  :test/send
+  (fn [db [_ msg]]
+    (println "dispatching " msg)
+    (chsk-send! [:test/send msg])
+    db))

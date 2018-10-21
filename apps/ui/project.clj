@@ -1,5 +1,6 @@
 (defproject lupakartta/ui "0.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :dependencies [[com.taoensso/sente "1.13.1"]             ; WebSocket communication
+                 [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]  ;
                  [reagent "0.7.0"]
                  [re-frame "0.10.5"]]
