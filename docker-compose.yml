@@ -2,12 +2,29 @@ version: '3'
 
 # Services
 services:
-  api:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbitmq"
+    environment:
+    - RABBITMQ_ERLANG_COOKIE=12345
+    - RABBITMQ_DEFAULT_USER=guest
+    - RABBITMQ_DEFAULT_PASS=guest
+    - RABBITMQ_DEFAULT_VHOST=/
+    ports:
+    - "15672:15672"
+    - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+    volumes:
+    - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.config
+    networks:
+      - routing
+
+  lupakartta_api:
     build:
-      context: ./api
+      context: ./apps/api
       dockerfile: Dockerfile
     image: lupakartta/api:latest
-    container_name: lupakartta-api
     ports:
       - "8080:8080"
     deploy:
@@ -19,7 +36,9 @@ services:
       restart_policy:
         condition: on-failure
     networks:
+      - routing
       - microservices
 
 networks:
   microservices:
+  routing:

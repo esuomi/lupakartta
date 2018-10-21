@@ -25,7 +25,7 @@
             [lein-cloverage "1.0.10"]]  ; Clojure test coverage
 
   :aot :all
-  :main ^:skip-aot api.cli
+  :main ^:skip-aot lupakartta.api.cli
   :target-path "target/%s"
 
   ;; Maven like directory structure, mainly to keep things clear and familiar for JVM developers
