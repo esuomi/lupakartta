@@ -1,6 +1,6 @@
 (ns lupakartta.api.core
   (:require [lupakartta.utils :as utils]
-            [lupakartta.api.routing]
+            [lupakartta.api.server.core]
             [mount.core :as mount :refer [defstate]]
             [schema.core :as s]))  ; TODO: Should do this with spec
 

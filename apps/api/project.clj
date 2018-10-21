@@ -11,7 +11,11 @@
                  [metosin/reitit "0.2.3"]                  ; reitit is used for routing
                  [mount "0.1.13"]                          ; lots of people are a fan of component, I like mount for IoC
                  [ring/ring-core "1.7.0"]                  ; some readymade useful middleware, also required by sente
-                ]
+                 [ring/ring-devel "1.4.0"]
+                 [ring-cors "0.1.7"]
+                 [danlentz/clj-uuid "0.1.6"]
+                 [com.taoensso/sente "1.13.1"]             ; WebSocket communication
+                 ]
   :plugins [[lein-cljfmt "0.5.7"]       ; Clojure formatter/linter
             [lein-eftest "0.4.3"]       ; Better test runner for clojure.test
             [lein-kibit "0.1.5"]        ; There's a function for that - suggests alternates for better code
@@ -34,5 +38,7 @@
            :multithread? true}
   :profiles {:uberjar {:aot :all}
              :dev {:resource-paths ["src/test/resources"]
-                   :dependencies [[eftest "0.5.2"]]}
+                   :dependencies [[eftest "0.5.2"]
+                                  [org.clojure/tools.namespace "0.2.11"]
+                                  ]}
              :test {:dependencies [[eftest "0.5.2"]]}})
