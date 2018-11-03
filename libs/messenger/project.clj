@@ -3,4 +3,7 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]])
+
+  :dependencies [[com.novemberain/langohr "5.0.0"]  ; An idiomatic Clojure client for RabbitMQ that embraces the AMQP 0.9.1 model
+                 [org.clojure/clojure "1.8.0"]
+                 ])
