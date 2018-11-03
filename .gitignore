@@ -5,6 +5,9 @@ checkouts/
 out/
 bin/
 
+# Interop Maven project file, don't care about these being stored...
+pom.xml
+
 # Clojure metafiles
 .lein-env
 .lein-failures

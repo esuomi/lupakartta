@@ -3,6 +3,10 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
+
+  ; metadata for Lein Monolith
+  :deployable true
+
   :dependencies [[http-kit "2.3.0"]                        ; our http server of choice
                  [org.clojure/clojure "1.9.0"]             ; Clojure 1.9 itself (includes spec)
                  [org.clojure/tools.cli "0.3.7"]           ; Commandline interface parsing

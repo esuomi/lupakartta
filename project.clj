@@ -9,8 +9,10 @@
   :test-selectors {:unit        (complement :integration)
                    :integration :integration}
 
-  :monolith {:inherit [:test-selectors :env]
-             :inherit-leaky [:repositories :managed-dependencies]
-             :project-selectors {:deployable :deployable :unstable #(= (first (:version %)) \0)}
-             :project-dirs ["libs/*" "apps/*"]})
+  :monolith {:inherit           [:test-selectors :env]
+             :inherit-leaky     [:repositories :managed-dependencies]
+             :project-selectors {:deployable :deployable
+                                 :unstable   #(= (first (:version %)) \0)}
+             :project-dirs ["libs/*"
+                            "apps/*"]})
 
