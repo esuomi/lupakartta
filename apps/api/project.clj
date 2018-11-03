@@ -32,11 +32,6 @@
   :main ^:skip-aot lupakartta.api.cli
   :target-path "target/%s"
 
-  ;; Maven like directory structure, mainly to keep things clear and familiar for JVM developers
-  :source-paths   ["src/main/clj"]
-  :test-paths     ["src/test/clj"]
-  :resource-paths ["src/main/resources"]
-
   :repl-options {:init-ns lupakartta.user}
   :eftest {:report       api.reporter/report
            :multithread? true}
