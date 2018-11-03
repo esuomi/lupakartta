@@ -6,9 +6,8 @@
 
 ; nothing special yet :-)
 
-(defn start [args]
-  (core/start args)
-  :ready)
+(defn start []
+  (core/start))
 
 (defn reset []
   (mount/stop)

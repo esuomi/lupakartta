@@ -9,11 +9,11 @@
 
   :dependencies [[http-kit "2.3.0"]                        ; our http server of choice
                  [org.clojure/clojure "1.9.0"]             ; Clojure 1.9 itself (includes spec)
-                 [org.clojure/tools.cli "0.3.7"]           ; Commandline interface parsing
                  [lupakartta/messenger  "0.1.0-SNAPSHOT"]  ; internal library for microservice communication
                  [lupakartta/middleware "0.1.0-SNAPSHOT"]  ; common Ring middleware
+                 [metosin/maailma "1.1.0"]                 ; Opinionated environment variables library
                  [metosin/reitit "0.2.3"]                  ; reitit is used for routing
-                 [mount "0.1.13"]                          ; lots of people are a fan of component, I like mount for IoC
+                 [mount "0.1.13"]                          ; managing Clojure and ClojureScript app state since (reset)
                  [ring/ring-core "1.7.0"]                  ; some readymade useful middleware, also required by sente
                  [ring/ring-devel "1.4.0"]
                  [ring-cors "0.1.7"]

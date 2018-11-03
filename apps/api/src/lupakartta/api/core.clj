@@ -1,19 +1,10 @@
 (ns lupakartta.api.core
-  (:require [lupakartta.utils :as utils]
-            [lupakartta.api.server.core]
-            [mount.core :as mount :refer [defstate]]
-            [schema.core :as s]))  ; TODO: Should do this with spec
-
-(def Port
-  (s/constrained s/Int #(< 0 % 0x10000) 'in-port-range?))
-
-(def Config
-  {:port Port})
-
-(def defaults {:port 8080})
+  (:require [lupakartta.api.server.core]
+            [schema.core :as s]
+            [mount.core :as mount]))  ; TODO: Should do this with spec
 
 (s/set-fn-validation! true)
 
-(s/defn ^:always-validate start :- s/Any
-  [args :- Config]
-  (mount/start-with-args (utils/deep-merge defaults args)))
+(defn start
+  []
+  (mount/start))

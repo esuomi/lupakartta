@@ -1,5 +1,6 @@
 (ns lupakartta.api.server.core
   (:require [lupakartta.middleware :as middleware]
+            [lupakartta.api.config :refer [config]]
             [lupakartta.api.server.events :as events]
             [lupakartta.api.server.session :as session]
             [mount.core :as mount :refer [defstate]]
@@ -63,5 +64,5 @@
       server)))
 
 (defstate server
-  :start (start-server (args->server-config (mount/args)))
+  :start (start-server config)
   :stop  (server :timeout 100))
