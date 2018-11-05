@@ -7,7 +7,10 @@
   ; metadata for Lein Monolith
   :deployable true
 
-  :dependencies [[http-kit "2.3.0"]                        ; our http server of choice
+  :dependencies [[com.novemberain/langohr "5.0.0"]         ; An idiomatic Clojure client for RabbitMQ that embraces the AMQP 0.9.1 model
+                 [com.taoensso/sente "1.13.1"]             ; WebSocket communication
+                 [danlentz/clj-uuid "0.1.6"]
+                 [http-kit "2.3.0"]                        ; our http server of choice
                  [org.clojure/clojure "1.9.0"]             ; Clojure 1.9 itself (includes spec)
                  [lupakartta/messenger  "0.1.0-SNAPSHOT"]  ; internal library for microservice communication
                  [lupakartta/middleware "0.1.0-SNAPSHOT"]  ; common Ring middleware
@@ -17,9 +20,8 @@
                  [ring/ring-core "1.7.0"]                  ; some readymade useful middleware, also required by sente
                  [ring/ring-devel "1.4.0"]
                  [ring-cors "0.1.7"]
-                 [danlentz/clj-uuid "0.1.6"]
-                 [com.taoensso/sente "1.13.1"]             ; WebSocket communication
                  ]
+
   :plugins [[lein-cljfmt "0.5.7"]       ; Clojure formatter/linter
             [lein-eftest "0.4.3"]       ; Better test runner for clojure.test
             [lein-kibit "0.1.5"]        ; There's a function for that - suggests alternates for better code

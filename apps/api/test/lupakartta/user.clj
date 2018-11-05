@@ -1,7 +1,6 @@
 (ns lupakartta.user
   (:require [clojure.tools.namespace.repl :as tnr]
             [lupakartta.api.core :as core]
-            [lupakartta.api.cli :as cli]
             [mount.core :as mount]))
 
 ; nothing special yet :-)

@@ -21,6 +21,13 @@ and to run Lupakartta execute
 docker stack deploy -c docker-compose.yml lupakartta
 ```
 
+# Messaging Architecture
+
+Lupakartta is built to be reactive and functional which is why there's quite a bit of plumbing in this repository.
+
+ - UI communicates with backend using persistent WebSocket connection
+ - On startup microservices announce themselves to all other services; this causes them to send their current capability descriptors to all listeners
+
 # Mad Props
 
 In order of discovery:

@@ -9,7 +9,8 @@
   (s/constrained s/Int #(< 0 % 0x10000) 'in-port-range?))
 
 (def Config
-  {:port Port})
+  {:port Port
+   :rmq  {s/Any s/Any}}) ;; TODO: Make this Langohr config compatible
 
 (def defaults {:port 8080})
 
@@ -20,4 +21,4 @@
              defaults
              (m/build-config
                (m/resource "config.edn")
-               (m/file     "config-dev.edn")))))
+               (m/resource "config-dev.edn")))))

@@ -1,0 +1,5 @@
+{:port 8080
+ :rmq  {:host     "localhost"
+        :port     5672
+        :username "guest"
+        :password "guest"}}
