@@ -5,10 +5,11 @@
   "Multimethod used to handle events coming from the client."
   (fn [[ev-id ev-arg] ring-req] ev-id))
 
-(defmethod handle-event :test/send
+(defmethod handle-event :ui/send
   [[_ msg] req]
   (when-let [uid (session/get-session-uid req)]
-    [uid [:test/reply (clojure.string/reverse msg)]]))
+    (println "ui send")
+    [uid [:ui/reply (clojure.string/reverse msg)]]))
 
 (defmethod handle-event :chsk/ws-ping
   [_ req]

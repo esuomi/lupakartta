@@ -26,9 +26,9 @@
           (fn [[ev-id ev-arg]] ev-id))
 
 ;; Print answer
-(defmethod handle-event :test/reply
+(defmethod handle-event :ui/reply
   [[_ msg]]
-  (dispatch [:test/reply msg]))
+  (dispatch [:ui/reply msg]))
 
 ;; Ignoring unknown events.
 (defmethod handle-event :default

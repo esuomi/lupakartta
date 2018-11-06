@@ -18,15 +18,21 @@
             [ring.middleware.reload :refer [wrap-reload]]
             [clj-uuid :as uuid]))
 
-(defonce sente-socket (sente/make-channel-socket! sente-web-server-adapter {}))
+(defn create-sente-ws
+  []
+  (defonce sente-socket (sente/make-channel-socket! sente-web-server-adapter {}))
 
-(let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn connected-uids]} sente-socket]
-  (def ring-ajax-post                ajax-post-fn)
-  (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
-  (def ch-chsk                       ch-recv) ; ChannelSocket's receive channel
-  (def chsk-send!                    send-fn) ; ChannelSocket's send API fn
-  (def connected-uids                connected-uids) ; Watchable, read-only atom
-  )
+  (let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn connected-uids]} sente-socket]
+    (def ring-ajax-post                ajax-post-fn)
+    (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
+    (def ch-chsk                       ch-recv) ; ChannelSocket's receive channel
+    (def chsk-send!                    send-fn) ; ChannelSocket's send API fn
+    (def connected-uids                connected-uids) ; Watchable, read-only atom
+    ))
+
+(defstate sente
+  :start (create-sente-ws)
+  )  ; TODO create graceful shutdown which sends shutdown events to all connected uids and tears down the server proper
 
 (defn- event-loop
   []

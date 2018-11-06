@@ -20,7 +20,7 @@ services:
 
   lupakartta_api:
     build:
-      context: ./apps/api
+      context: ./apps/api-gateway
       dockerfile: Dockerfile
     image: lupakartta/api:latest
     command: --config configs/api.edn

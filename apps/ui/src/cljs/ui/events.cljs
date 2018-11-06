@@ -9,12 +9,12 @@
     db/default-db))
 
 (re-frame/reg-event-db
-  :test/reply
+  :ui/reply
   (fn [db msg]
     (assoc db :message msg)))
 
 (re-frame/reg-event-db
-  :test/send
+  :ui/send
   (fn [db [_ msg]]
-    (chsk-send! [:test/send msg])
+    (chsk-send! [:ui/send msg])
     db))

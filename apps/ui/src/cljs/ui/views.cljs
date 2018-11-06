@@ -3,11 +3,19 @@
             [reagent.core :as reagent]
             [ui.socket :as socket]))
 
+(defn el->value
+  [el]
+  (-> el .-target .-value))
+
+(defn- dispatch-value
+  [event el]
+  (dispatch [event (el->value el)]))
+
 (defn input
   []
   [:input {:type "text"
            :placeholder "Write here."
-           :on-change #(let [m (-> % .-target .-value)] (println (str "m = " m)) (dispatch [:test/send m]))}])
+           :on-change #(dispatch-value :ui/send %)}])
 
 (defn message
   []
