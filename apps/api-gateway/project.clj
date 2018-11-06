@@ -1,4 +1,4 @@
-(defproject lupakartta/api "0.1.0-SNAPSHOT"
+(defproject lupakartta/api-gateway "0.1.0-SNAPSHOT"
   :description "API/backend for Lupakartta"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"

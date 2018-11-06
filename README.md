@@ -4,7 +4,22 @@
 
 Welcome to Lupakartta monorepository root!
 
-For UI and microservices see [./apps](./apps), libraries see [.libs](./libs) and for runtime configs go to [./configs](.configs).
+# How to navigate this repository
+
+ - This README describes how to build and deploy everything as it represents the _whole project_
+ - Each _defined subdirectory_ has its own README which describes the contents beneath
+
+The subdirectories in no particular order are
+ - [./apps](./apps) - UI and microservices - that is, applications of all sorts
+ - [./libs](./libs) - libraries and shared components; all code used in two or more applications
+ - [./configs](.configs) -  Configuration files for applications and whatnot
+ 
+The root of this repository also contains
+
+ - [docker-compose.yml](docker-compose.yml) which has definitions for all Docker services, networks etc. needed to run the whole thing
+ - [.editorconfig](.editorconfig) because it is [Awesome](https://editorconfig.org/)
+
+This project is 100% Clojure|Sript and uses the [Leiningen](https://leiningen.org/) ecosystem for builds.
 
 # Packaging
 
@@ -20,13 +35,6 @@ and to run Lupakartta execute
 ```sh
 docker stack deploy -c docker-compose.yml lupakartta
 ```
-
-# Messaging Architecture
-
-Lupakartta is built to be reactive and functional which is why there's quite a bit of plumbing in this repository.
-
- - UI communicates with backend using persistent WebSocket connection
- - On startup microservices announce themselves to all other services; this causes them to send their current capability descriptors to all listeners
 
 # Mad Props
 
