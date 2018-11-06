@@ -16,6 +16,5 @@
 (re-frame/reg-event-db
   :test/send
   (fn [db [_ msg]]
-    (println "dispatching " msg)
     (chsk-send! [:test/send msg])
     db))
