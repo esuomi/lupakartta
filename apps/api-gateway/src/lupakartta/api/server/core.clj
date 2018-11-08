@@ -36,8 +36,8 @@
 
 (defn- event-loop
   []
-  (go (loop [{:keys [client-uuid ring-req event] :as data} (<! ch-chsk)]
-    (println (str "event loop :: " client-uuid " :: " event))
+  (go (loop [{:keys [uid ring-req event] :as data} (<! ch-chsk)]
+    (println (str "event loop :: " uid " / " (-> data :connected-uids deref count) " connected :: " event))
     (thread
       (when-let [result (events/handle-event event ring-req)]
         (apply chsk-send! result)))
