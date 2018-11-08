@@ -14,3 +14,7 @@ insert_final_newline = true
 # 2 space indentation for Clojure
 [*.{clj,cljs,cljc}]
 indent_size = 2
+
+# 2 space indentation for HTML
+[*.html]
+indent_size = 2

@@ -2,7 +2,7 @@
   :description "Lupakartta monorepo"
 
   :plugins  [[lein-monolith "1.1.0"]
-             [lein-cprint "1.2.0"]]
+             [lein-cprint   "1.2.0"]]
 
   :dependencies [[org.clojure/clojure "1.9.0"]]
 
