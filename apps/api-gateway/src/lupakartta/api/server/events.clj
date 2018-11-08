@@ -8,7 +8,6 @@
 (defmethod handle-event :ui/send
   [[_ msg] req]
   (when-let [uid (session/get-session-uid req)]
-    (println "ui send")
     [uid [:ui/reply (clojure.string/reverse msg)]]))
 
 (defmethod handle-event :chsk/ws-ping
