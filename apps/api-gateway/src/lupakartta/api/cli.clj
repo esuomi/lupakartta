@@ -11,7 +11,7 @@
   "Parse application specific commandline arguments here"
   [args]
   (let [options (:options (parse-opts args cli-options))]
-    (set! lupakartta.api.config/*config-file* (:config options))))
+    (alter-var-root (var lupakartta.api.config/*config-file*) (fn [_] (:config options)))))
 
 (defn -main
   [& args]

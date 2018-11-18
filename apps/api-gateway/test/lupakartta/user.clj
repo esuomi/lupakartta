@@ -6,6 +6,7 @@
 ; nothing special yet :-)
 
 (defn start []
+  (alter-var-root (var lupakartta.api.config/*config-file*) (fn [x] "config-dev.edn"))
   (core/start))
 
 (defn reset []
