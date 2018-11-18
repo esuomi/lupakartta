@@ -33,7 +33,7 @@
 ;; Ignoring unknown events.
 (defmethod handle-event :default
   [event]
-  (println "UNKNOW EVENT" event))
+  (println "UNKNOWN EVENT" event))
 
 (defn test-session
   "Ping the server."
