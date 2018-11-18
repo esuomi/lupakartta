@@ -4,6 +4,7 @@
             [schema.core :as s]
             [lupakartta.utils :as utils]))  ; TODO: Should do this with spec
 
+(def ^:dynamic *config-file* "config.edn")
 
 (def Port
   (s/constrained s/Int #(< 0 % 0x10000) 'in-port-range?))
@@ -20,5 +21,5 @@
            (utils/deep-merge
              defaults
              (m/build-config
-               (m/resource "config.edn")
-               (m/resource "config-dev.edn")))))
+               (m/resource *config-file*)
+               (m/file *config-file*)))))

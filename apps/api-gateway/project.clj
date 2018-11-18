@@ -12,6 +12,7 @@
                  [danlentz/clj-uuid "0.1.6"]
                  [http-kit "2.3.0"]                        ; our http server of choice
                  [org.clojure/clojure "1.9.0"]             ; Clojure 1.9 itself (includes spec)
+                 [org.clojure/tools.cli "0.4.1"]           ; command-line arg parsing
                  [lupakartta/messenger  "0.1.0-SNAPSHOT"]  ; internal library for microservice communication
                  [lupakartta/middleware "0.1.0-SNAPSHOT"]  ; common Ring middleware
                  [metosin/maailma "1.1.0"]                 ; Opinionated environment variables library
