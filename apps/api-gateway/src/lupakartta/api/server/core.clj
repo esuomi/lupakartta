@@ -13,49 +13,49 @@
             [clojure.core.async :as async :refer [<! <!! chan go go-loop thread]]
             [clojure.core.cache :as cache]
             [taoensso.sente :as sente]
-            [taoensso.sente.server-adapters.http-kit :refer (sente-web-server-adapter)]
+            [taoensso.sente.server-adapters.http-kit :refer [get-sch-adapter]]
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.reload :refer [wrap-reload]]
             [clj-uuid :as uuid]))
 
 (defn create-sente-ws
   []
-  (defonce sente-socket (sente/make-channel-socket! sente-web-server-adapter {}))
+  (sente/make-channel-socket! (get-sch-adapter) {}))
 
-  (let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn connected-uids]} sente-socket]
-    (def ring-ajax-post                ajax-post-fn)
-    (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
-    (def ch-chsk                       ch-recv) ; ChannelSocket's receive channel
-    (def chsk-send!                    send-fn) ; ChannelSocket's send API fn
-    (def connected-uids                connected-uids) ; Watchable, read-only atom
-    ))
+(defn shutdown-sente-ws
+  [sente]
+  (let [{:keys [send-fn connected-uids]} sente]
+    (doseq [uid (:any connected-uids)]
+      (send-fn uid [:server/shutdown (str "Server shut down")]))))
 
 (defstate sente
   :start (create-sente-ws)
-  )  ; TODO create graceful shutdown which sends shutdown events to all connected uids and tears down the server proper
+  :stop  (shutdown-sente-ws sente))
 
 (defn- event-loop
   []
-  (go (loop [{:keys [uid ring-req event] :as data} (<! ch-chsk)]
-    (println (str "event loop :: " uid " / " (-> data :connected-uids deref count) " connected :: " event))
-    (thread
-      (when-let [result (events/handle-event event ring-req)]
-        (apply chsk-send! result)))
-    (recur (<! ch-chsk)))))
+  (let [{:keys [send-fn ch-recv]} sente]
+    (go (loop [{:keys [uid ring-req event] :as data} (<! ch-recv)]
+      (println (str "event loop :: " uid " / " (-> data :connected-uids deref count) " connected :: " event))
+      (thread
+        (when-let [result (events/handle-event event ring-req)]
+          (apply send-fn result)))
+      (recur (<! ch-recv))))))
 
 (defn- args->server-config [args]
   {:port  (:port args)
    :join? false})
 
 (defn start-server [config]
-  (let [app (ring/ring-handler
+  (let [{:keys [ajax-get-or-ws-handshake-fn ajax-post-fn]} sente
+        app (ring/ring-handler
               (ring/router
                 ;; TODO: app routes go here :-)
                 ["/chsk" {:get  {:parameters {:query {:udt int?
                                                       :client-id string?
                                                       :handshake? boolean?}}
-                                 :handler ring-ajax-get-or-ws-handshake}
-                          :post {:handler ring-ajax-post}
+                                 :handler ajax-get-or-ws-handshake-fn}
+                          :post {:handler ajax-post-fn}
                           }]
                 ;; router data effecting all routes
                 {:data {:coercion reitit.coercion.spec/coercion

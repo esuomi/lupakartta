@@ -15,6 +15,11 @@
     (assoc db :message msg)))
 
 (re-frame/reg-event-db
+  :server/shutdown
+  (fn-traced [db msg]
+    (assoc db :message msg)))
+
+(re-frame/reg-event-db
   :ui/send
   (fn-traced [db [_ msg]]
     (chsk-send! [:ui/send msg])
