@@ -8,6 +8,8 @@
             [lupakartta.api.config :refer [config]]
             [mount.core :as mount :refer [defstate]]))
 
+;; TODO: This ns has too many defstates...
+
 (def announcements-ex "lupakartta.service.announcements")
 (def self "lupakartta.api")
 
