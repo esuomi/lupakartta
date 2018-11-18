@@ -1,5 +1,6 @@
 (defproject lupakartta/ui "0.1.0-SNAPSHOT"
-  :dependencies [[com.taoensso/sente "1.13.1"]           ; WebSocket communication
+  :dependencies [[cljsjs/leaflet "1.3.4-1"]              ; CLJSJS LeafletJS wrapper
+                 [com.taoensso/sente "1.13.1"]           ; WebSocket communication
                  [garden "1.3.6"]                        ; Generate CSS with Clojure
                  [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]  ;

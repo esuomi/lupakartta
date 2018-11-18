@@ -3,11 +3,31 @@
   <head>
     <meta charset='utf-8'>
     <title>Lupakartta</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css" integrity="sha256-gk3z+XTkT2rjrvAxcKDA15OH4w1FssyEwnSC3WnKbWU=" crossorigin="anonymous" />
-    <link href="css/screen.css" rel="stylesheet" type="text/css">
+
+    <!-- CSS cross-browser sanitization -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css"
+          integrity="sha256-gk3z+XTkT2rjrvAxcKDA15OH4w1FssyEwnSC3WnKbWU="
+          crossorigin="anonymous" />
+
+    <!-- LeafletJS for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+            integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+            crossorigin=""></script>
+
+    <!-- Lupakartta custom styles -->
+    <link rel="stylesheet"
+          type="text/css"
+          href="css/screen.css" />
+
+    <!-- Disallow mobile devices from zooming on the page itself -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" style="width: 100vw; height: 100%"></div>
     <script src="js/compiled/app.js"></script>
     <script>ui.core.init();</script>
   </body>

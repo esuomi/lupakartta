@@ -24,9 +24,14 @@
            :border-spacing  0}]
   )
 
+(defstyles map
+  [:html :body :#map {:height "100%"
+                      :width "100vw"}])
+
 (def screen
   (concat
     reset
+    map
     (list
       [:body {:height "100%"}]
       [:.level1 {:color "darkred"}])))
