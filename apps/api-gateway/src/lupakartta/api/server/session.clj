@@ -6,6 +6,7 @@
   [req]
   (get-in req [:session :uid]))
 
+; TODO #1: use namespaced UUIDs for generating microservice specific identity UUIDs; this is for backtracking and rudimentary validation
 (defn unique-id
   "Return a unique ID (for an unsecured session ID)."
   []
