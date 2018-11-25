@@ -17,3 +17,7 @@
 (defmethod handle-event :default
   [event req]
   nil)
+
+; (s/def ::a (s/and string? #(= \f (first %))))
+; (s/keys ::my-map :req-un [::a])
+; (s/valid? ::my-map {:a "foo"})

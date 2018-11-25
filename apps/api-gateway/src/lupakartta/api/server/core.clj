@@ -65,7 +65,7 @@
                                      rmk/wrap-keyword-params
                                      ]}})
               )]
-    (when-let [server (server/run-server app config)]
+    (when-let [server (server/run-server app (args->server-config config))]
       (event-loop)
       server)))
 
